@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 04, 2020 at 03:48 PM
+-- Generation Time: Aug 06, 2020 at 03:09 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `comment_text` text NOT NULL,
   `comment_status` int(1) NOT NULL,
   PRIMARY KEY (`comment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `comments`
@@ -182,7 +182,9 @@ CREATE TABLE IF NOT EXISTS `comments` (
 
 INSERT INTO `comments` (`comment_id`, `comment_subject`, `comment_text`, `comment_status`) VALUES
 (1, 'doloam kilani loban', 'Moments on chamber pressed to. Doubtful ', 1),
-(2, 'sqs', 'qSQQSDSQDSQD', 1);
+(2, 'sqs', 'qSQQSDSQDSQD', 1),
+(3, 'This is the subject', 'Moments on chamber pressed to. Doubtful ', 1),
+(4, 'This is the subject', 'Moments on chamber pressed to. Doubtful ', 1);
 
 -- --------------------------------------------------------
 
@@ -302,6 +304,32 @@ INSERT INTO `country_state_city_treeview` (`id`, `name`, `parent_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `customer`
+--
+
+DROP TABLE IF EXISTS `customer`;
+CREATE TABLE IF NOT EXISTS `customer` (
+  `customer_id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_name` varchar(300) NOT NULL,
+  `customer_email` varchar(300) NOT NULL,
+  PRIMARY KEY (`customer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customer_id`, `customer_name`, `customer_email`) VALUES
+(1, 'Kathleen J. Nicholson', 'kathleenjnicholson@mailinator.com'),
+(2, 'Vance J. Head', 'vancejhead@mailinator.com'),
+(3, 'Jon P. Unger', 'jonpunger@mailinator.com'),
+(4, 'Rhonda G. Nieto', 'rhondagnieto@mailinator.com'),
+(5, 'Efren Y. Farley', 'efrenyfarley@mailinator.com'),
+(6, 'Donald A. Mitchell', 'donaldamitchell@mailinator.com');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customers`
 --
 
@@ -314,15 +342,34 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `postal_code` varchar(20) NOT NULL,
   `country` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `customers`
 --
 
 INSERT INTO `customers` (`id`, `name`, `address`, `city`, `postal_code`, `country`) VALUES
+(5, 'Sadik Nassim', 'Azharoune 1', 'Kenitra', '14070', 'Morocco'),
 (3, 'Sami', '24 Hanali rdc', 'Kenitra', '14070', 'Morocco'),
 (4, 'Younes', 'Jamid', 'Safi', '11500', 'Morocco');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `email_data`
+--
+
+DROP TABLE IF EXISTS `email_data`;
+CREATE TABLE IF NOT EXISTS `email_data` (
+  `email_id` int(11) NOT NULL AUTO_INCREMENT,
+  `email_subject` text NOT NULL,
+  `email_body` text NOT NULL,
+  `email_address` varchar(255) NOT NULL,
+  `email_track_code` varchar(255) NOT NULL,
+  `email_status` enum('Yes','No') NOT NULL,
+  `email_open_datetime` datetime NOT NULL,
+  PRIMARY KEY (`email_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -348,15 +395,12 @@ CREATE TABLE IF NOT EXISTS `employees` (
 
 INSERT INTO `employees` (`id`, `name`, `address`, `gender`, `designation`, `age`, `image`) VALUES
 (1, 'Bruce Tom', '656 Edsel Road\r\nSherman Oaks, CA 91403', 'Male', 'Driver', 36, '1.jpg'),
-(5, 'Clara Gilliam', '63 Woodridge Lane\r\nMemphis, TN 38138', 'Female', 'Programmer', 24, '2.jpg'),
-(6, 'Barbra K. Hurley', '1241 Canis Heights Drive\r\nLos Angeles, CA 90017', 'Female', 'Service technician', 26, '3.jpg'),
 (7, 'Antonio J. Forbes', '403 Snyder Avenue\r\nCharlotte, NC 28208', 'Male', 'Faller', 32, '4.jpg'),
 (8, 'Charles D. Horst', '1636 Walnut Hill Drive\r\nCincinnati, OH 45202', 'Male', 'Financial investigator', 29, '5.jpg'),
 (175, 'Ronald D. Colella', '1571 Bingamon Branch Road, Barrington, IL 60010', 'Male', 'Top executive', 32, '6.jpg'),
 (174, 'Martha B. Tomlinson', '4005 Bird Spring Lane, Houston, TX 77002', 'Female', 'Systems programmer', 38, '7.jpg'),
 (161, 'Glenda J. Stewart', '3482 Pursglove Court, Rossburg, OH 45362', 'Female', 'Cost consultant', 28, '8.jpg'),
 (162, 'Jarrod D. Jones', '3827 Bingamon Road, Garfield Heights, OH 44125', 'Male', 'Manpower development advisor', 64, '9.jpg'),
-(163, 'William C. Wright', '2653 Pyramid Valley Road, Cedar Rapids, IA 52404', 'Male', 'Political geographer', 33, '10.jpg'),
 (178, 'Sara K. Ebert', '1197 Nelm Street\r\nMc Lean, VA 22102', 'Female', 'Billing machine operator', 50, ''),
 (177, 'Patricia L. Scott', '1584 Dennison Street\r\nModesto, CA 95354', 'Female', 'Urban and regional planner', 54, ''),
 (179, 'James K. Ridgway', '3462 Jody Road\r\nWayne, PA 19088', 'Female', 'Recreation leader', 41, ''),
@@ -364,8 +408,7 @@ INSERT INTO `employees` (`id`, `name`, `address`, `gender`, `designation`, `age`
 (181, 'Kimberly J. Ellis', '4905 Holt Street\r\nFort Lauderdale, FL 33301', 'Male', 'Dressing room attendant', 24, ''),
 (183, 'Steve John', '108, Vile Parle, CL', 'Male', 'Software Engineer', 29, ''),
 (184, 'Marks Johnson', '021, Big street, NY', 'Male', 'Head of IT', 41, ''),
-(185, 'Mak Pub', '1462 Juniper Drive\r\nBreckenridge, MI 48612', 'Male', 'Mental health counselor', 40, ''),
-(186, 'Nada Nouri', 'mlmsdqsmdl dsf', 'Female', 'Data Entry Specialist', 20, '');
+(185, 'Mak Pub', '1462 Juniper Drive\r\nBreckenridge, MI 48612', 'Male', 'Mental health counselor', 40, '');
 
 -- --------------------------------------------------------
 
@@ -571,7 +614,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `languages`
@@ -584,7 +627,78 @@ INSERT INTO `languages` (`id`, `name`) VALUES
 (4, 'Laravel, YII'),
 (5, 'Laravel,CakePHP'),
 (6, 'Slim'),
-(7, 'Laravel,Codeigniter');
+(7, 'Laravel,Codeigniter'),
+(8, 'Codeigniter, Symfony, Slim'),
+(9, 'C, Java');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `like_table`
+--
+
+DROP TABLE IF EXISTS `like_table`;
+CREATE TABLE IF NOT EXISTS `like_table` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `framework` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `like_table`
+--
+
+INSERT INTO `like_table` (`id`, `framework`) VALUES
+(2, 'Laravel'),
+(3, 'Symfony'),
+(4, 'Yii'),
+(5, 'CakePHP'),
+(6, 'Codeigniter'),
+(7, 'Codeigniter'),
+(8, 'Laravel'),
+(9, 'Yii'),
+(10, 'Codeigniter'),
+(11, 'Laravel'),
+(12, 'Symfony'),
+(13, 'Codeigniter'),
+(14, 'Yii'),
+(15, 'Codeigniter'),
+(16, 'CakePHP'),
+(17, 'Yii'),
+(18, 'Codeigniter'),
+(19, 'Laravel'),
+(20, 'Laravel'),
+(21, 'Laravel'),
+(22, 'Laravel'),
+(23, 'Codeigniter'),
+(24, 'Codeigniter'),
+(25, 'Codeigniter'),
+(26, 'CakePHP'),
+(27, 'CakePHP'),
+(28, 'Codeigniter'),
+(29, 'Laravel'),
+(30, 'Symfony'),
+(31, 'Yii'),
+(32, 'Codeigniter'),
+(33, 'Codeigniter'),
+(34, 'Laravel'),
+(35, 'Symfony'),
+(36, 'Yii'),
+(37, 'CakePHP'),
+(38, 'Codeigniter'),
+(39, 'Codeigniter'),
+(40, 'Codeigniter'),
+(41, 'Codeigniter'),
+(42, 'CakePHP'),
+(43, 'Laravel'),
+(44, 'Symfony'),
+(45, 'Laravel'),
+(46, 'Codeigniter'),
+(47, 'Codeigniter'),
+(48, 'CakePHP'),
+(49, 'CakePHP'),
+(50, 'Symfony'),
+(51, 'Laravel');
 
 -- --------------------------------------------------------
 
@@ -660,6 +774,37 @@ INSERT INTO `order` (`order_id`, `order_customer_name`, `order_item`, `order_val
 (18, 'Arlette G. Nathan', 'TaoTronics Bluetooth in-Ear Headphones', 25.00, '2016-10-03'),
 (19, 'Ronald S. Vallejo', 'Scotchgard Fabric Protector, 10-Ounce, 2-Pack', 20.00, '2016-10-03'),
 (20, 'Felicia L. Sorensen', 'Anker 24W Dual USB Wall Charger with Foldable Plug', 12.00, '2016-10-04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `page`
+--
+
+DROP TABLE IF EXISTS `page`;
+CREATE TABLE IF NOT EXISTS `page` (
+  `page_id` int(11) NOT NULL AUTO_INCREMENT,
+  `page_title` text NOT NULL,
+  `page_url` text NOT NULL,
+  `page_order` int(11) NOT NULL,
+  PRIMARY KEY (`page_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `page`
+--
+
+INSERT INTO `page` (`page_id`, `page_title`, `page_url`, `page_order`) VALUES
+(1, 'JSON - Dynamic Dependent Dropdown List using Jquery and Ajax', 'json-dynamic-dependent-dropdown-list-using-jquery-and-ajax', 3),
+(2, 'Live Table Data Edit Delete using Tabledit Plugin in PHP', 'live-table-data-edit-delete-using-tabledit-plugin-in-php', 5),
+(3, 'Create Treeview with Bootstrap Treeview Ajax JQuery in PHP\r\n', 'create-treeview-with-bootstrap-treeview-ajax-jquery-in-php', 9),
+(4, 'Bootstrap Multiselect Dropdown with Checkboxes using Jquery in PHP\r\n', 'bootstrap-multiselect-dropdown-with-checkboxes-using-jquery-in-php', 1),
+(5, 'Facebook Style Popup Notification using PHP Ajax Bootstrap\r\n', 'facebook-style-popup-notification-using-php-ajax-bootstrap', 0),
+(6, 'Modal with Dynamic Previous & Next Data Button by Ajax PHP\r\n', 'modal-with-dynamic-previous-next-data-button-by-ajax-php', 6),
+(7, 'How to Use Bootstrap Select Plugin with Ajax Jquery PHP\r\n', 'how-to-use-bootstrap-select-plugin-with-ajax-jquery-php', 7),
+(8, 'How to Load CSV File data into HTML Table Using AJAX jQuery\r\n', 'how-to-load-csv-file-data-into-html-table-using-ajax-jquery', 8),
+(9, 'Autocomplete Textbox using Typeahead with Ajax PHP Bootstrap\r\n', 'autocomplete-textbox-using-typeahead-with-ajax-php-bootstrap', 4),
+(10, 'Export Data to Excel in Codeigniter using PHPExcel\r\n', 'export-data-to-excel-in-codeigniter-using-phpexcel', 2);
 
 -- --------------------------------------------------------
 
@@ -774,6 +919,47 @@ INSERT INTO `product_cart` (`id`, `name`, `image`, `price`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `product_filter`
+--
+
+DROP TABLE IF EXISTS `product_filter`;
+CREATE TABLE IF NOT EXISTS `product_filter` (
+  `product_id` int(20) NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(120) NOT NULL,
+  `product_brand` varchar(100) NOT NULL,
+  `product_price` decimal(8,2) NOT NULL,
+  `product_ram` char(5) NOT NULL,
+  `product_storage` varchar(50) NOT NULL,
+  `product_camera` varchar(20) NOT NULL,
+  `product_image` varchar(100) NOT NULL,
+  `product_quantity` mediumint(5) NOT NULL,
+  `product_status` enum('0','1') NOT NULL COMMENT '0-active,1-inactive',
+  PRIMARY KEY (`product_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `product_filter`
+--
+
+INSERT INTO `product_filter` (`product_id`, `product_name`, `product_brand`, `product_price`, `product_ram`, `product_storage`, `product_camera`, `product_image`, `product_quantity`, `product_status`) VALUES
+(1, 'Honor 9 Lite (Sapphire Blue, 64 GB)  (4 GB RAM)', 'Honor', '14499.00', '4', '64', '13', 'image-1.jpeg', 10, '1'),
+(2, '\r\nInfinix Hot S3 (Sandstone Black, 32 GB)  (3 GB RAM)', 'Infinix', '8999.00', '3', '32', '13', 'image-2.jpeg', 10, '1'),
+(3, 'VIVO V9 Youth (Gold, 32 GB)  (4 GB RAM)', 'VIVO', '16990.00', '4', '32', '16', 'image-3.jpeg', 10, '1'),
+(4, 'Moto E4 Plus (Fine Gold, 32 GB)  (3 GB RAM)', 'Moto', '11499.00', '3', '32', '8', 'image-4.jpeg', 10, '1'),
+(5, 'Lenovo K8 Plus (Venom Black, 32 GB)  (3 GB RAM)', 'Lenevo', '9999.00', '3', '32', '13', 'image-5.jpg', 10, '1'),
+(6, 'Samsung Galaxy On Nxt (Gold, 16 GB)  (3 GB RAM)', 'Samsung', '10990.00', '3', '16', '13', 'image-6.jpeg', 10, '1'),
+(7, 'Moto C Plus (Pearl White, 16 GB)  (2 GB RAM)', 'Moto', '7799.00', '2', '16', '8', 'image-7.jpeg', 10, '1'),
+(8, 'Panasonic P77 (White, 16 GB)  (1 GB RAM)', 'Panasonic', '5999.00', '1', '16', '8', 'image-8.jpeg', 10, '1'),
+(9, 'OPPO F5 (Black, 64 GB)  (6 GB RAM)', 'OPPO', '19990.00', '6', '64', '16', 'image-9.jpeg', 10, '1'),
+(10, 'Honor 7A (Gold, 32 GB)  (3 GB RAM)', 'Honor', '8999.00', '3', '32', '13', 'image-10.jpeg', 10, '1'),
+(11, 'Asus ZenFone 5Z (Midnight Blue, 64 GB)  (6 GB RAM)', 'Asus', '29999.00', '6', '128', '12', 'image-12.jpeg', 10, '1'),
+(12, 'Redmi 5A (Gold, 32 GB)  (3 GB RAM)', 'MI', '5999.00', '3', '32', '13', 'image-12.jpeg', 10, '1'),
+(13, 'Intex Indie 5 (Black, 16 GB)  (2 GB RAM)', 'Intex', '4999.00', '2', '16', '8', 'image-13.jpeg', 10, '1'),
+(14, 'Google Pixel 2 XL (18:9 Display, 64 GB) White', 'Google', '61990.00', '4', '64', '12', 'image-14.jpeg', 10, '1');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `programmers`
 --
 
@@ -799,6 +985,43 @@ INSERT INTO `programmers` (`programmer_id`, `programmer_name`, `programmer_skill
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sample_data`
+--
+
+DROP TABLE IF EXISTS `sample_data`;
+CREATE TABLE IF NOT EXISTS `sample_data` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `age` int(3) NOT NULL,
+  `gender` enum('male','female') NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sample_data`
+--
+
+INSERT INTO `sample_data` (`id`, `first_name`, `last_name`, `age`, `gender`) VALUES
+(3, 'Tiny', 'Marry', 19, 'female'),
+(4, 'Dolores', 'Brooks', 29, 'female'),
+(5, 'Cindy', 'Dahl', 24, 'female'),
+(6, 'George', 'Fagan', 30, 'male'),
+(7, 'Chelsea', 'Mendoza', 18, 'female'),
+(8, 'Wayne', 'Hodges', 27, 'male'),
+(9, 'Keith', 'Watkin', 26, 'male'),
+(10, 'Eric', 'Smith', 31, 'male'),
+(11, 'Robert', 'Owens', 42, 'male'),
+(12, 'Candace', 'Hand', 27, 'female'),
+(13, 'Hortencia', 'Bell', 30, 'female'),
+(14, 'William', 'Sosa', 36, 'male'),
+(15, 'Patricia', 'Davis', 23, 'female'),
+(17, 'Fadel', 'Sedlacek', 21, 'male'),
+(19, 'Salma', 'Saoud', 44, 'female');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `students`
 --
 
@@ -808,7 +1031,7 @@ CREATE TABLE IF NOT EXISTS `students` (
   `first_name` varchar(200) NOT NULL,
   `last_name` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `students`
@@ -818,7 +1041,109 @@ INSERT INTO `students` (`id`, `first_name`, `last_name`) VALUES
 (5, 'Peterson', 'Parker'),
 (7, 'Rock', 'Madison'),
 (8, 'Titan', 'Edge'),
-(9, 'Hamid', 'Ezzine');
+(9, 'Hamid', 'Ezzine'),
+(10, 'Zoubir', 'Nano');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_image`
+--
+
+DROP TABLE IF EXISTS `tbl_image`;
+CREATE TABLE IF NOT EXISTS `tbl_image` (
+  `image_id` int(11) NOT NULL AUTO_INCREMENT,
+  `image_name` varchar(250) NOT NULL,
+  `image_description` varchar(250) NOT NULL,
+  PRIMARY KEY (`image_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_image`
+--
+
+INSERT INTO `tbl_image` (`image_id`, `image_name`, `image_description`) VALUES
+(1, 'belle-vue.jpg', 'Belle vue'),
+(3, 'services-3.jpg', ''),
+(4, 'img-7.jpg', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_post`
+--
+
+DROP TABLE IF EXISTS `tbl_post`;
+CREATE TABLE IF NOT EXISTS `tbl_post` (
+  `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `post_title` text,
+  `post_description` text,
+  `author` varchar(255) DEFAULT NULL,
+  `datetime` datetime DEFAULT NULL,
+  `post_image` varchar(150) DEFAULT NULL,
+  `post_url` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_post`
+--
+
+INSERT INTO `tbl_post` (`id`, `post_title`, `post_description`, `author`, `datetime`, `post_image`, `post_url`) VALUES
+(1, 'Rank tall boy man them over post now', 'May musical arrival beloved luckily adapted him. Shyness mention married son she his started now. Rose if as past near were. To graceful he elegance oh moderate attended entrance pleasure. Vulgar saw fat sudden edward way played either. Thoughts smallest at or peculiar relation breeding produced an. At depart spirit on stairs. She the either are wisdom praise things she before. Be mother itself vanity favour do me of. Begin sex was power joy after had walls miles.', 'Jalil', '2020-08-04 00:00:00', '1.jpg', NULL),
+(2, 'Husbands ask repeated resolved', 'She end cordial visitor noisier fat subject general picture. Or if offering confined entrance no. Nay rapturous him see something residence. Highly talked do so vulgar. Her use behaved spirits and natural attempt say feeling. Exquisite mr incommode immediate he something ourselves it of. Law conduct yet chiefly beloved examine village proceed.', 'Hicham', '2020-08-01 00:00:00', '2.jpg', NULL),
+(3, 'Next long no gave mr eyes', 'May musical arrival beloved luckily adapted him. Shyness mention married son she his started now. Rose if as past near were. To graceful he elegance oh moderate attended entrance pleasure. Vulgar saw fat sudden edward way played either. Thoughts smallest at or peculiar relation breeding produced an. At depart spirit on stairs. She the either are wisdom praise things she before. Be mother itself vanity favour do me of. Begin sex was power joy after had walls miles.', 'Jalil', '2020-08-04 00:00:00', '3.jpg', NULL),
+(4, 'Had strictly mrs handsome mistaken cheerful', 'She end cordial visitor noisier fat subject general picture. Or if offering confined entrance no. Nay rapturous him see something residence. Highly talked do so vulgar. Her use behaved spirits and natural attempt say feeling. Exquisite mr incommode immediate he something ourselves it of. Law conduct yet chiefly beloved examine village proceed.', 'Hicham', '2020-08-01 00:00:00', '4.jpg', NULL),
+(5, 'Ham her demands removal brought', 'Literature admiration frequently indulgence announcing are who you her. Was least quick after six. So it yourself repeated together cheerful. Neither it cordial so painful picture studied if. Sex him position doubtful resolved boy expenses. Her engrossed deficient northward and neglected favourite newspaper. But use peculiar produced concerns ten.', 'Sami', '2020-07-02 00:00:00', '3.jpg', NULL),
+(6, 'Contented consisted continual curiosity', 'Society excited by cottage private an it esteems. Fully begin on by wound an. Girl rich in do up or both. At declared in as rejoiced of together. He impression collecting delightful unpleasant by prosperous as on. End too talent she object mrs wanted remove giving.', 'Layla', '2020-08-01 00:00:00', '2.jpg', NULL),
+(7, 'Fully begin on by wound', 'Literature admiration frequently indulgence announcing are who you her. Was least quick after six. So it yourself repeated together cheerful. Neither it cordial so painful picture studied if. Sex him position doubtful resolved boy expenses. Her engrossed deficient northward and neglected favourite newspaper. But use peculiar produced concerns ten.', 'Sami', '2020-07-02 00:00:00', '4.jpg', NULL),
+(8, 'Bringing it is he returned received raptures', 'Society excited by cottage private an it esteems. Fully begin on by wound an. Girl rich in do up or both. At declared in as rejoiced of together. He impression collecting delightful unpleasant by prosperous as on. End too talent she object mrs wanted remove giving.', 'Layla', '2020-08-01 00:00:00', '1.jpg', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_product`
+--
+
+DROP TABLE IF EXISTS `tbl_product`;
+CREATE TABLE IF NOT EXISTS `tbl_product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `price` double(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_product`
+--
+
+INSERT INTO `tbl_product` (`id`, `name`, `image`, `price`) VALUES
+(1, 'Item 1', '1.jpg', 3500.00),
+(2, 'Item 2', '2.jpg', 4600.00),
+(3, 'Item 3', '3.jpg', 4000.00),
+(4, 'Item 4', '4.jpg', 13000.00),
+(5, 'Item 5', '5.jpg', 4000.00),
+(6, 'Item 6', '6.jpg', 16000.00),
+(7, 'Item 7', '7.jpg', 2700.00),
+(8, 'Item 8', '8.jpg', 5000.00),
+(9, 'Item 9', '9.jpg', 7000.00),
+(10, 'Item 10', '10.jpg', 9000.00),
+(11, 'Item 11', '11.jpg', 8000.00),
+(12, 'Item 12', '12.jpg', 15000.00),
+(13, 'Item 13', '13.jpg', 11000.00),
+(14, 'Item 14', '14.jpg', 6000.00),
+(15, 'Item 15', '15.jpg', 7200.00),
+(16, 'Item 16', '16.jpg', 6600.00),
+(17, 'Item 17', '17.jpg', 8000.00),
+(18, 'Item 18', '18.jpg', 4500.00),
+(19, 'Item 19', '19.jpg', 10500.00),
+(20, 'Item 20', '20.jpg', 9200.00),
+(21, 'Item 21', '21.jpg', 7400.00),
+(22, 'Item 22', '22.jpg', 5600.00),
+(23, 'Item 23', '23.jpg', 4000.00),
+(24, 'Item 24', '24.jpg', 5000.00),
+(25, 'Item 25', '25.jpg', 8900.00);
 
 -- --------------------------------------------------------
 
@@ -832,14 +1157,15 @@ CREATE TABLE IF NOT EXISTS `tbl_sample` (
   `first_name` varchar(250) NOT NULL,
   `last_name` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_sample`
 --
 
 INSERT INTO `tbl_sample` (`id`, `first_name`, `last_name`) VALUES
-(1, 'Brad', 'Hussey');
+(1, 'Brad', 'Hussey'),
+(2, 'Simo', 'Dale');
 
 -- --------------------------------------------------------
 
@@ -1049,6 +1375,79 @@ INSERT INTO `tbl_video` (`video_id`, `video_title`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_webslesson_post`
+--
+
+DROP TABLE IF EXISTS `tbl_webslesson_post`;
+CREATE TABLE IF NOT EXISTS `tbl_webslesson_post` (
+  `webslesson_post_id` int(11) NOT NULL AUTO_INCREMENT,
+  `webslesson_post_title` tinytext NOT NULL,
+  `webslesson_post_blog_link` longtext NOT NULL,
+  `webslesson_post_demo_link` varchar(255) NOT NULL,
+  PRIMARY KEY (`webslesson_post_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_webslesson_post`
+--
+
+INSERT INTO `tbl_webslesson_post` (`webslesson_post_id`, `webslesson_post_title`, `webslesson_post_blog_link`, `webslesson_post_demo_link`) VALUES
+(1, 'Horses seeing at played plenty', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(2, 'Shutters ye marriage to throwing ', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(3, 'Ten scarcely distance moreover handsome', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(4, 'Paid day till shed only fact age its end', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(5, 'Subject but why ten earnest husband', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(6, 'Unreserved had she nay dissimilar admiration interested', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(7, 'Resolved to in believed desirous unpacked weddings together', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(8, 'Shutters ye marriage to throwing ', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(9, 'Our announcing sufficient why pianoforte', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(10, 'So journey greatly or garrets', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(11, 'An active dinner wishes at unable hardly no talked on', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(12, 'Cultivated an up solicitude mr unpleasant', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(13, 'Exquisite by it admitting cordially september newspaper', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(14, 'What near kept met call old west dine', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(15, 'By an truth after heard going early given', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(16, 'Ten scarcely distance moreover handsome', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(17, 'Sympathize did now preference', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(18, 'Ten scarcely distance moreover handsome', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(19, 'Own handsome delicate its property mistress her end appetite', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(20, 'Repeated offended you opinions off dissuade ask packages screened', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(21, 'Mile home its new way with high told said', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(22, 'For detract charmed add talking age', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(23, 'To do noisy downs round an happy books', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(24, 'Two before narrow not relied', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link'),
+(25, 'It it oh happen lovers afraid', 'Needed feebly dining oh talked wisdom oppose at. Applauded use attempted strangers now are middleton concluded had. It is tried ﻿no added purse shall no on truth. Pleased anxious or as in by viewing forbade minutes prevent. Too leave had those get being led weeks blind. Had men rose from down lady able. Its son him ferrars proceed six parlors. Her say projection age announcing decisively men. Few gay sir those green men timed downs widow chief. Prevailed remainder may propriety can and. ', 'link');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `timeline`
+--
+
+DROP TABLE IF EXISTS `timeline`;
+CREATE TABLE IF NOT EXISTS `timeline` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `year` int(10) NOT NULL,
+  `comment` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `timeline`
+--
+
+INSERT INTO `timeline` (`id`, `year`, `comment`) VALUES
+(1, 2012, 'Company Started in Small room'),
+(2, 2013, 'First 2 Clients Received and start journey of growing.'),
+(3, 2014, 'Recruit new staff and total Staff strength 10 and Buy new office'),
+(4, 2015, 'Received Awards for Fast Growing IT company by providing best services to client.'),
+(5, 2016, 'Buy Second Office in USA and Client increase from 2 to  200 and expand business to globe.'),
+(6, 2017, '80 plus staff higher in USA office and Received Best emerging IT company awards in USA.'),
+(7, 2018, 'Story of Continue Business Growing and expanding business process still continue.');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `trainers`
 --
 
@@ -1105,6 +1504,30 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `image`) VALUES
 (10, 'Hamid', 'Ezzine', '1164671473.jpg'),
 (11, 'Bradly', 'Naoumi', '878821365.jpg'),
 (12, 'Rachid', 'Aguo', '410171331.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_api`
+--
+
+DROP TABLE IF EXISTS `users_api`;
+CREATE TABLE IF NOT EXISTS `users_api` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users_api`
+--
+
+INSERT INTO `users_api` (`id`, `first_name`, `last_name`) VALUES
+(1, 'Tarik', 'Safri'),
+(2, 'Hamid', 'Zeen'),
+(3, 'Brad', 'Hussey'),
+(4, 'Rachid', 'Ag');
 
 -- --------------------------------------------------------
 
